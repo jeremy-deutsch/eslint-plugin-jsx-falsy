@@ -5,7 +5,7 @@ import {
 import * as ts from "typescript";
 import * as tsutils from "tsutils";
 
-const createRule = ESLintUtils.RuleCreator(() => "");
+const createRule = ESLintUtils.RuleCreator(name => name);
 
 module.exports = createRule<[], "jsxNumber&&" | "jsxString&&">({
   name: "no-falsy-and",

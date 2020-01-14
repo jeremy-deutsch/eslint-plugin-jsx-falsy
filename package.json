@@ -7,6 +7,7 @@
     "eslintplugin",
     "eslint-plugin",
     "typescript",
+    "react",
     "react-native"
   ],
   "author": "Jeremy Deutsch",
@@ -17,7 +18,6 @@
   },
   "dependencies": {
     "@typescript-eslint/experimental-utils": "2.16.0",
-    "requireindex": "~1.1.0",
     "tsutils": "^3.17.1"
   },
   "devDependencies": {
