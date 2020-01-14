@@ -15,11 +15,11 @@ function MyComponent(props: {
 }) {
   return (
     <div>
-      {str && <ComponentX /> /* error */}
-      {!!str && <ComponentX /> /* no error */}
-      {maybeString && <ComponentX /> /* error */}
-      {maybeObj && <ComponentX /> /* no error */}
-      {num && <ComponentX /> /* no error */}
+      {props.str && <ComponentX /> /* error */}
+      {!!props.str && <ComponentX /> /* no error */}
+      {props.maybeString && <ComponentX /> /* error */}
+      {props.maybeObj && <ComponentX /> /* no error */}
+      {props.num && <ComponentX /> /* no error */}
     </div>
   );
 }
@@ -39,11 +39,11 @@ Next, install `eslint-plugin-jsx-falsy`:
 $ yarn add --dev eslint-plugin-jsx-falsy
 ```
 
-**Note:** If you installed ESLint globally (using the `-g` flag) then you must also install `eslint-plugin-jsx-falsy` globally.
+**Note:** If you installed ESLint globally (using `yarn global` or `npm install -g`) then you must also install `eslint-plugin-jsx-falsy` globally.
 
 ## Usage
 
-Add `jsx-falsy` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix. Note that the rule won't work unless `project` is specified in `parserOptions`, since this rule uses type information (more information [here](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)).
+Add `jsx-falsy` to the plugins section of your `.eslintrc` configuration file. You can omit the `eslint-plugin-` prefix. Note that the rule won't work unless `project` is specified in `parserOptions`, since this rule uses type information (more details [here](https://github.com/typescript-eslint/typescript-eslint/blob/master/docs/getting-started/linting/TYPED_LINTING.md)).
 
 ```json
 {
