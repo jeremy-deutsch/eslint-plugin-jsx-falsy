@@ -5,7 +5,7 @@ out
 storybook-static
 .DS_Store
 
-bin/
+lib/
 
 # Created by .ignore support plugin (hsz.mobi)
 ### Node template
