@@ -14,7 +14,8 @@
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
-    "build": "tsc -p tsconfig.prod.json"
+    "build": "tsc -p tsconfig.prod.json",
+    "prepublish": "yarn test && yarn build"
   },
   "dependencies": {
     "@typescript-eslint/experimental-utils": "2.16.0",
