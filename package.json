@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-jsx-falsy",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Avoid accidentally rendering falsy values in your JSX.",
   "keywords": [
     "eslint",
