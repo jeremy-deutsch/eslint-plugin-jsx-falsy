@@ -11,6 +11,7 @@
     "react-native"
   ],
   "author": "Jeremy Deutsch",
+  "repository": "https://github.com/jeremy-deutsch/eslint-plugin-jsx-falsy",
   "main": "lib/index.js",
   "scripts": {
     "test": "jest",
