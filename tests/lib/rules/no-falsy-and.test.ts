@@ -147,6 +147,40 @@ const jsx = (
           endColumn: 11
         }
       ]
+    },
+    {
+      code:`
+function MyComponent(props: {
+  str: string;
+  num: number;
+  maybeString: string | null;
+  maybeObj: {} | null;
+}) {
+  return (
+    <div>
+      {props.str && <ComponentX /> /* error */}
+      {!!props.str && <ComponentX /> /* no error */}
+      {props.maybeString && <ComponentX /> /* error */}
+      {props.maybeObj && <ComponentX /> /* no error */}
+      {props.num && <ComponentX /> /* error */}
+    </div>
+  );
+}
+      `,
+      errors: [
+        {
+          messageId: "jsxString&&",
+          line: 10,
+        },
+        {
+          messageId: "jsxString&&",
+          line: 12,
+        },
+        {
+          messageId: "jsxNumber&&",
+          line: 14,
+        }
+      ]
     }
   ]
 };
