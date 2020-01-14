@@ -1,0 +1,10 @@
+{
+  "include": ["src/**/*", "tests/**/*"],
+  "compilerOptions": {
+    "strict": true,
+    "target": "ES2015",
+    "module": "CommonJS",
+    "skipLibCheck": true,
+    "outDir": "./lib"
+  }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "eslint-plugin-jsx-falsy",
+  "version": "0.0.1",
+  "description": "Avoid accidentally rendering falsy values in your JSX.",
+  "keywords": [
+    "eslint",
+    "eslintplugin",
+    "eslint-plugin",
+    "typescript",
+    "react-native"
+  ],
+  "author": "Jeremy Deutsch",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc -p tsconfig.prod.json"
+  },
+  "dependencies": {
+    "@typescript-eslint/experimental-utils": "2.16.0",
+    "requireindex": "~1.1.0",
+    "tsutils": "^3.17.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.25",
+    "@types/node": "^13.1.6",
+    "@typescript-eslint/parser": "^2.16.0",
+    "eslint": "^6.8.0",
+    "jest": "^24.9.0",
+    "mocha": "^3.1.2",
+    "prettier": "^1.19.1",
+    "ts-jest": "^24.3.0",
+    "typescript": "^3.7.4"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/parser": "^2.0.0",
+    "eslint": "^5.0.0 || ^6.0.0",
+    "typescript": "*"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "license": "ISC"
+}
