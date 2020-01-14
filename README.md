@@ -19,7 +19,7 @@ function MyComponent(props: {
       {!!props.str && <ComponentX /> /* no error */}
       {props.maybeString && <ComponentX /> /* error */}
       {props.maybeObj && <ComponentX /> /* no error */}
-      {props.num && <ComponentX /> /* no error */}
+      {props.num && <ComponentX /> /* error */}
     </div>
   );
 }
