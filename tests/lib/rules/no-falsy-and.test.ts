@@ -1,10 +1,9 @@
-import { TSESLint, ESLintUtils } from "@typescript-eslint/experimental-utils";
+import { TSESLint } from "@typescript-eslint/experimental-utils";
 import * as rule from "../../../src/rules/no-falsy-and";
 import {
   RuleModule,
   RunTests
 } from "@typescript-eslint/experimental-utils/dist/ts-eslint";
-// import path from "path";
 
 const parserPath = require.resolve("@typescript-eslint/parser");
 const tsconfigPath = require.resolve("../../../tsconfig.json");
@@ -60,13 +59,64 @@ const jsx = (
     {
       code: `
 let thing: string = "hey!"
+const jsx = (
+  <div>
+    {thing}
+  </div>
+)
+      `
+    },
+    {
+      code: `
+let thing: string = "hey!"
 const otherThing = thing && <div />
       `
     },
     {
       code: `
 let thing: number = 20
+const jsx = (
+  <div>
+    {!!thing && <div />}
+  </div>
+)
+      `
+    },
+    {
+      code: `
+let thing: number = 20
 const otherThing = thing && <div />
+      `
+    },
+    {
+      code: `
+function Component(props: {
+  objOrNull: {} | null;
+  nested: { obj: {}; nullOrUndef: null | undefined }
+}) {
+  const jsx = (
+    <div>
+      {objOrNull && <div />}
+      {nested && <div />}
+      {nested.obj && <div />}
+      {nested.nullOrUndef && <div />}
+    </div>
+  )
+}
+      `
+    },
+    {
+      code: `
+function Component(props: {
+  objOrNull: {} | null;
+  str: string;
+}) {
+  return (
+    <div>
+      {props.objOrNull && props.str}
+    </div>
+  )
+}
       `
     }
   ],
@@ -149,7 +199,92 @@ const jsx = (
       ]
     },
     {
-      code:`
+      code: `
+let str: string = "hello"
+let nullish: {} | null = {}
+const jsx = (
+  <div>
+    {nullish && str && <div />}
+  </div>
+)
+    `,
+      errors: [
+        {
+          messageId: "jsxString&&",
+          line: 6,
+          endLine: 6
+        }
+      ]
+    },
+    {
+      code: `
+function Component(props: {
+  objOrNull: {} | null;
+  str: string;
+}) {
+  return (
+    <div>
+      {props.str && props.objOrNull}
+    </div>
+  )
+}
+      `,
+      errors: [
+        {
+          messageId: "jsxString&&",
+          line: 8,
+          endLine: 8,
+          column: 8,
+          endColumn: 17
+        }
+      ]
+    },
+    {
+      code: `
+function Component(props: {
+  stringOrNull: string | null | undefined;
+}) {
+  return (
+    <div>
+      {props.stringOrNull && "text"}
+    </div>
+  )
+}
+      `,
+      errors: [
+        {
+          messageId: "jsxString&&",
+          line: 7,
+          endLine: 7,
+          column: 8,
+          endColumn: 26
+        }
+      ]
+    },
+    {
+      code: `
+function Component(props: {
+  numberOrNull: number | null | undefined;
+}) {
+  return (
+    <div>
+      {props.numberOrNull && "text"}
+    </div>
+  )
+}
+      `,
+      errors: [
+        {
+          messageId: "jsxNumber&&",
+          line: 7,
+          endLine: 7,
+          column: 8,
+          endColumn: 26
+        }
+      ]
+    },
+    {
+      code: `
 function MyComponent(props: {
   str: string;
   num: number;
@@ -171,14 +306,17 @@ function MyComponent(props: {
         {
           messageId: "jsxString&&",
           line: 10,
+          endLine: 10
         },
         {
           messageId: "jsxString&&",
           line: 12,
+          endLine: 12
         },
         {
           messageId: "jsxNumber&&",
           line: 14,
+          endLine: 14
         }
       ]
     }

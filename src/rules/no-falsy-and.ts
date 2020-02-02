@@ -56,9 +56,9 @@ module.exports = createRule<[], "jsxNumber&&" | "jsxString&&">({
         if (
           !isLeftNodeString &&
           !isLeftNodeNumber &&
-          tsutils.isTypeFlagSet(type, ts.TypeFlags.Union)
+          tsutils.isUnionType(type)
         ) {
-          for (const ty of (type as ts.UnionType).types) {
+          for (const ty of type.types) {
             if (tsutils.isTypeFlagSet(ty, ts.TypeFlags.StringLike)) {
               isLeftNodeString = true;
               break;
